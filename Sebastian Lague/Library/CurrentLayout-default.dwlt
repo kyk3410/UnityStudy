@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 97
+  controlID: 77
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ecc1ffff
-      m_LastClickedID: -15892
+      m_SelectedIDs: 8a300000
+      m_LastClickedID: 0
       m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -614,7 +614,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 755
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -654,20 +654,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Script
+  - Assets/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Yang-Kyu\Desktop\UnityStudy\Sebastian Lague
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 162e0000
-    m_LastClickedID: 11798
-    m_ExpandedIDs: 00000000a42c000000ca9a3b
+    m_SelectedIDs: 322d0000
+    m_LastClickedID: 11570
+    m_ExpandedIDs: 00000000aa2c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -695,7 +695,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a42c0000
+    m_ExpandedIDs: 00000000aa2c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -726,15 +726,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 5237000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Spawner
-      m_OriginalName: Spawner
+      m_Name: Enemy
+      m_OriginalName: Enemy
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 13930
+      m_UserData: 9906
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
