@@ -1,18 +1,38 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+[RequireComponent (typeof (NavMeshAgent))]
+public class Enemy : LivingEntity
 {
-    // Start is called before the first frame update
-    void Start()
+    NavMeshAgent pathfinder;
+    Transform target;
+    protected override void Start()
     {
-        
+        base.Start ();
+        pathfinder = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        StartCoroutine(UpdatePath());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    IEnumerator UpdatePath()
+    {
+        float refreshRate = 0.25f;
+        while (target != null)
+        {
+            Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
+            if (!dead)
+            {
+                pathfinder.SetDestination(target.position);
+            }
+            yield return new WaitForSeconds(refreshRate);
+            
+        }
     }
 }

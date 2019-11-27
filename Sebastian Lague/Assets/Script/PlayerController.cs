@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Vector3 heigthCorrectedPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
         transform.LookAt(heigthCorrectedPoint);
     }
-    public void FixedUpdate()
+    void FixedUpdate()
     {
         myRigidbody.MovePosition(myRigidbody.position + velocity * Time.fixedDeltaTime); 
     }
