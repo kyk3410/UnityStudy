@@ -40,7 +40,7 @@ public class Enemy : LivingEntity
             hasTarget = true;
 
             target = GameObject.FindGameObjectWithTag("Player").transform;
-            targetEntity = GetComponent<LivingEntity>();
+            targetEntity = target.GetComponent<LivingEntity>();
             targetEntity.OnDeath += OnTargetDeath;
 
             myCollisionRadius = GetComponent<CapsuleCollider>().radius;
