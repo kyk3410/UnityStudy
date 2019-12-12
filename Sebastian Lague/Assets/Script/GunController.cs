@@ -10,8 +10,10 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
+        // 만약 처음 시작 무기를 할당해 줬었다면, 즉 startingGun이 Null이 아니라면
         if(startingGun != null)
         {
+            // 하면 EquipGun을 호출할 수 있다.
             EquipGun(startingGun);  
         }
     }
@@ -28,12 +30,14 @@ public class GunController : MonoBehaviour
         }
         equippedGun = Instantiate(gunToEquip, weaponHold.position, weaponHold.rotation) as Gun;
         // 이제 총기를 새로 인스턴스화 할때 위치 값으로 weaponHold.position와 weaponHold.rotation을 줄 수 있다.
+        // 변수가 Gun타입이라 오브젝트를 Gun으로 형변환 해주어야 된다.
         // 총 오브젝트가 플레이어를 따라 움직이도록 weaponHold의 자식으로 넣어야 한다.
         equippedGun.transform.parent = weaponHold;
     }
 
     public void Shoot()
     {
+        // 장착중인 무기를 먼저 체크해야한다
         if(equippedGun != null)
         {
             equippedGun.Shoot();

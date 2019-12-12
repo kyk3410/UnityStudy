@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (PlayerController))]
-[RequireComponent (typeof (GunController))]
+[RequireComponent (typeof (GunController))] // GunController가 있다는 가정하에 가져오는것이므로 할당해준다
 public class Player : LivingEntity
 {
     public float moveSpeed = 5f;
@@ -16,17 +16,18 @@ public class Player : LivingEntity
     {
         base.Start();
         controller = GetComponent<PlayerController>();
+        // WeaponController에 대한 레퍼런스를 가져온다
         gunController = GetComponent<GunController>();
         viewCamera = Camera.main;
     }
     void Update()
     {
-        // Movement input
+        // 이동을 입력 받는 곳
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 moveVelocity = moveInput.normalized * moveSpeed;
         controller.Move(moveVelocity);
 
-        // Look input
+        // 바라보는 방향
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayDistance;
@@ -37,9 +38,11 @@ public class Player : LivingEntity
             controller.LookAt(point);
         }
 
-        // Weapon input
+        // 무기 조작 입력
+        // 마우스 왼쪽을 뜻하는 0을 집어넣어서 마우스 왼쪽을 누르고 있는 상태인걸 체크
         if (Input.GetMouseButton(0))
         {
+            // gunController의 Shoot을 호출할수있다.
             gunController.Shoot();
         }
     }

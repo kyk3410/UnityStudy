@@ -20,14 +20,18 @@ public class Projectile : MonoBehaviour
             OnHitObject(initialCollisions[0], transform.position);
         }
     }
+
+    // 무기마다 발사체가 서로 다른 속력을 가지게 하고 싶을 수도 있으므로
     public void SetSpeed(float newSpeed)
     {
+        // newSpeed를 speed에 할당해준다.
         speed = newSpeed;
     }
     void Update()
     {
         float moveDistance = speed * Time.deltaTime;
         CheckCollisions(moveDistance);
+        // 1. 발사체에 우리가 원하는건 앞으로 날라가는 것 뿐이라
         transform.Translate(Vector3.forward * moveDistance);
     }
 
