@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// IDamageable을 상속한다
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth;
-    protected float health;
-    protected bool dead;
+    public float startingHealth; // health값을 직접 지정하지 않고, 시작체력을 만든다.
+    protected float health; // 체력변수 proteceted를 해줌으로써 상속 관계 없는 클래스에서 사용할 수 없고, 인스펙터에서 볼 수 없다
+    // Player나 Enemy 스크립트는 사용가능하다
+    protected bool dead; // true, false를 나타내기 위해 bool로 해준다.
 
     public event System.Action OnDeath;
 
     protected virtual void Start()
     {
-        health = startingHealth;
+        health = startingHealth; // 체력을 할당해준다. -> Player와 Enemy에 MonoBehavior 대신 LivingEntity을 상속한다
+        // public 대신 protected로 사용한다
     }
+    // IDamageable을 상속 받았기 때문에 강제로 구현해주어야된다
     public virtual void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection)
     {
+        // health -= damage;를 해주고 health가 0보다 작거나 같으면 Die메소드를 호출해준다
+        // 또 아직 죽지 않았을때라는 조건을 붙여준다 && !dead
         // Do some stuff here with hit var
         TakeDamage(damage);
     }
@@ -31,13 +37,22 @@ public class LivingEntity : MonoBehaviour, IDamageable
     }
 
     [ContextMenu("Self Destruct")]
-    protected void Die()
+    protected void Die() // public 대신 protected 로 해준다
     {
-        dead = true;
+        dead = true; // 죽었으면 dead에 true를 할당
         if (OnDeath != null)
         {
             OnDeath();
         }
-        GameObject.Destroy(gameObject);
+        GameObject.Destroy(gameObject);// 게임오브젝트를 파괴해준다.
     }
 }
+
+/* 플레이어와 적 모두 공통점을 가지고 있다 양쪽다 데미지를 입고 HP가 존재하고 죽을 수도 있다 하여 그런기능을 각각 구현하는것보다
+ * 공유하는 클래스를 만들어 양쪽다 상속받아 쓸 LivingEntity 라는 클래스를 만든다.
+ * IDamageable을 구현할수 있는데, 우선 LivingEntity가 MonoBehavior을 상속(extends)하는데
+ * Player와 Enemy에 LivingEntity를 상속해주었는데 이때 주의해야될 점은 중복된 메소드가 있는 경우이다,
+ * 상속받은 스크립트의 Start와 LivingEntity의 Start메소드는 완전이 덮어 쓰게 될것이다 하여 상속받은 스크립트의 코드가 절대 실행되지 못한다.
+ * 하여 virtual 키워드를 더해서 public virtual void Start()로 만들어준다.
+ * Player와 Enemy에도 protected로 해준다
+*/

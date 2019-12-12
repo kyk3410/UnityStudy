@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent (typeof (PlayerController))]
 [RequireComponent (typeof (GunController))] // GunController가 있다는 가정하에 가져오는것이므로 할당해준다
-public class Player : LivingEntity
+public class Player : LivingEntity // <- LivingEntity에는 IDamageable과 MonoBehaviour를 이미 상속중이다
 {
     public float moveSpeed = 5f;
 
