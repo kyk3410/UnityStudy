@@ -35,12 +35,20 @@ public class GunController : MonoBehaviour
         equippedGun.transform.parent = weaponHold;
     }
 
-    public void Shoot()
+    public void OnTriggerHold()
     {
         // 장착중인 무기를 먼저 체크해야한다
         if(equippedGun != null)
         {
-            equippedGun.Shoot();
+            equippedGun.OnTriggerHold();
+        }
+    }
+
+    public void OnTriggerRelase()
+    {
+        if (equippedGun != null)
+        {
+            equippedGun.OnTriggerRelease();
         }
     }
 }

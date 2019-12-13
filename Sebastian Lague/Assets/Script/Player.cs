@@ -43,7 +43,12 @@ public class Player : LivingEntity // <- LivingEntity에는 IDamageable과 MonoB
         if (Input.GetMouseButton(0))
         {
             // gunController의 Shoot을 호출할수있다.
-            gunController.Shoot();
+            gunController.OnTriggerHold();
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            gunController.OnTriggerRelase();
+        }
+
     }
 }

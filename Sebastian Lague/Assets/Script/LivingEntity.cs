@@ -10,7 +10,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     // Player나 Enemy 스크립트는 사용가능하다
     protected bool dead; // true, false를 나타내기 위해 bool로 해준다.
 
-    public event System.Action OnDeath;
+    // LivingEntity가 Enemy클래스의 Spawner까지 짜는건 난잡하고 죽는 처리를 할 때 Die 메소드안에 Spawner래퍼런스를 찾아 계속 확인하는건 좋지가 않다
+    // Spawner가 event를 구독하게 하여 적이 죽었을때 알림을 받게 한다.
+    public event System.Action OnDeath; // System.Action을 선언하는데, 이것은 델리케이트 메소드로써
+    // * 델리케이트 - 다른 메소드의 위치를 가르키고 불러올 수 있는 타입. c++에서의 함수 포인터와 유사한 역할
 
     protected virtual void Start()
     {
@@ -40,9 +43,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected void Die() // public 대신 protected 로 해준다
     {
         dead = true; // 죽었으면 dead에 true를 할당
-        if (OnDeath != null)
+        if (OnDeath != null) // OnDeath 이벤트가 null이 아니라면
         {
-            OnDeath();
+            OnDeath(); // OnDeath를 일반적인 함수처럼 호출 할수가 있다
         }
         GameObject.Destroy(gameObject);// 게임오브젝트를 파괴해준다.
     }
