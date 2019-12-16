@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public bool devMode;
     public Wave[] waves; 
     public Enemy enemy; // 프리팹에 Enemy를 할당할수 있게 해준다.
 
@@ -55,12 +56,25 @@ public class Spawner : MonoBehaviour
                 campPositionOld = playerT.position;
             }
             // enemiesRemainingToSpawn이 0보다 작고, 현재 시간이 다음 스폰시간보다 크면
-            if (enemiesRemainingToSpawn > 0 && Time.time > nextSpawnTime)
+            if ((enemiesRemainingToSpawn > 0 || currentWave.infinite) && Time.time > nextSpawnTime)
             {
                 enemiesRemainingToSpawn--; // 첫번째 적을 불러야 되므로 -- 해준다
                 nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-                StartCoroutine(SpawnEnemy());    
+                StartCoroutine("SpawnEnemy");    
+            }
+        }
+
+        if (devMode)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                StopCoroutine("SpawnEnemy");
+                foreach(Enemy enemy in FindObjectsOfType<Enemy>())
+                {
+                    GameObject.Destroy(enemy.gameObject);
+                }
+                NextWave();
             }
         }
     }
@@ -76,7 +90,7 @@ public class Spawner : MonoBehaviour
             spawnTile = map.GetTileFromPosition(playerT.position);
         }
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
-        Color initialColor = tileMat.color;
+        Color initialColor = Color.white;
         Color flashColor = Color.red;
         float spawnTimer = 0;
 
@@ -88,6 +102,7 @@ public class Spawner : MonoBehaviour
         }
         Enemy spawnedEnemy = Instantiate(enemy, spawnTile.position +  Vector3.up, Quaternion.identity) as Enemy;
         spawnedEnemy.OnDeath += OnEnemyDeath; // 적을 스폰할 때 마다, spawnedEnemy.OnDeath 에 OnEnemyDeath를 추가해준다
+        spawnedEnemy.SetCharacteristics(currentWave.moveSpeed, currentWave.hitsToKillPlayer, currentWave.enemyHealth, currentWave.skinColor);
     }
 
     void OnPlayerDeath()
@@ -134,8 +149,14 @@ public class Spawner : MonoBehaviour
     [System.Serializable] // System.Serializable을 해줌으로 써 인스펙터에 보이게 해준다.
     public class Wave
     {
+        public bool infinite;
         public int enemyCount;
         public float timeBetweenSpawns;
+
+        public float moveSpeed;
+        public int hitsToKillPlayer;
+        public float enemyHealth;
+        public Color skinColor;
     }
 }
 /*  Spawner은 웨이브에 따라 이루어질것이다 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public LayerMask collisionMask; // LayerMask를 정의 해준다, 이것으로 어떤 오브젝트, 어떤 레이어가 발사체와 충돌할지 결정할 수 있다.
+    public Color trailColor;
     float speed = 10f;
     float damage = 1f;
 
@@ -19,6 +20,8 @@ public class Projectile : MonoBehaviour
         {
             OnHitObject(initialCollisions[0], transform.position);
         }
+
+        GetComponent<TrailRenderer>().material.SetColor("_TintColor", trailColor); 
     }
 
     // 무기마다 발사체가 서로 다른 속력을 가지게 하고 싶을 수도 있으므로

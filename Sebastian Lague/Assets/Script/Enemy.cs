@@ -29,28 +29,58 @@ public class Enemy : LivingEntity
 
     bool hasTarget;
 
+    private void Awake()
+    {
+        pathfinder = GetComponent<NavMeshAgent>(); // 할당!
+
+
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            hasTarget = true;
+
+            target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
+            targetEntity = target.GetComponent<LivingEntity>();
+
+            myCollisionRadius = GetComponent<CapsuleCollider>().radius;
+            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
+        }
+    }
+
     protected override void Start()
     {
         //Enemy 스크립트에는 public override void Start()로 만들어주는데 여기 있는 Start 메소드를 오버라이드를 한다
         // 하여 여기서 base.Start()로 베이스(부모)클래스의 Start메소드를 부른다.
         base.Start ();
         pathfinder = GetComponent<NavMeshAgent>(); // 할당!
-        skinMaterial = GetComponent<Renderer>().material;
-        originalColor = skinMaterial.color;
+        
 
-        if(GameObject.FindGameObjectWithTag("Player") != null)
+        if(hasTarget)
         {
             currentState = State.Chasing;
-            hasTarget = true;
+            //hasTarget = true;
 
-            target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
-            targetEntity = target.GetComponent<LivingEntity>();
+            /*target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
+            targetEntity = target.GetComponent<LivingEntity>();*/
             targetEntity.OnDeath += OnTargetDeath;
 
-            myCollisionRadius = GetComponent<CapsuleCollider>().radius;
-            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
+            /*myCollisionRadius = GetComponent<CapsuleCollider>().radius;
+            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;*/
             StartCoroutine(UpdatePath()); // 호출하게 해주면 refreshRate한 시간마다 계속 목적지를 갱신해준다.
         }
+    }
+
+    public void SetCharacteristics(float moveSpeed, int hitsToKillPlayer,float enemyHealth, Color skinColor)
+    {
+        pathfinder.speed = moveSpeed;
+        if (hasTarget)
+        {
+            damage = Mathf.Ceil(targetEntity.startingHealth / hitsToKillPlayer);
+        }
+        startingHealth = enemyHealth;
+
+        skinMaterial = GetComponent<Renderer>().material;
+        skinMaterial.color = skinColor;
+        originalColor = skinMaterial.color;
     }
 
     public override void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection)
