@@ -7,25 +7,29 @@ using UnityEngine.AI;
 [RequireComponent (typeof (NavMeshAgent))] // NavMeshAgent를 불러주어 Enemy 스크립트를 할당하는 오브젝트는 전부 생긴다
 public class Enemy : LivingEntity
 {
+    // pathfinder.SetDestination 메소드가 공격 Attack()메소드 도중에 실행되면 pathfinder가 false가 되었기 때문에 에러를 리턴할 것이다
+    // 그래서 해야할일은, 현재 적의 상태를 저장하고 이를 통해 만약 공격 중인 상태라면 경로를 설정하는 작업을 안하는 것이다
+    // 하여 enum 을 선언해준다, 대문자 S를 사용한다. Idle은 아무것도 하지 않는 상태, Chasing은 플레이어를 추격하는 상태, 그리고 Attacking은 공격하는 도중임을 나타낸다.
     public enum State {Idle, Chasing, Attacking};
+    // 그리고 현재 상태를 나타내는 State currentState를 선언한다.
     State currentState;
 
     public ParticleSystem deathEffect;
 
     NavMeshAgent pathfinder; // 길찾기를 관리 할것이다
     Transform target; // targer은 플레이어이다
-    Material skinMaterial;
+    Material skinMaterial; // 적의 색깔을 가져온다.
     LivingEntity targetEntity;
 
-    Color originalColor;
+    Color originalColor; // 공격이 끝난후에 원래 색으로 돌아와야되니
 
     float attackDistanceThreshold = 0.5f; //(공격 거리 임계값, 공격할 수 있는 한계 거리)
     float timeBetweenAttacks = 1f;
     float damage = 1;
 
     float nextAttackTime;
-    float myCollisionRadius;
-    float targetCollisionRadius;
+    float myCollisionRadius; // 적의 자신의 반지름
+    float targetCollisionRadius; // 목표의 충돌범위를 위한
 
     bool hasTarget;
 
@@ -41,8 +45,8 @@ public class Enemy : LivingEntity
             target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
             targetEntity = target.GetComponent<LivingEntity>();
 
-            myCollisionRadius = GetComponent<CapsuleCollider>().radius;
-            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
+            myCollisionRadius = GetComponent<CapsuleCollider>().radius; // 자신의 캡슐 콜라이더 컴포넌트를 가져와 radius값을 할당
+            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius; // targetCollisionRadius도 같은 것을 목표에서 가져오니, 위와 같이 할당한다.
         }
     }
 
@@ -56,6 +60,7 @@ public class Enemy : LivingEntity
 
         if(hasTarget)
         {
+            // Start 메소드에서 currentState = State.Chasing 으로 기본 상태를 지정해준다. 기본 상태는 추격이다
             currentState = State.Chasing;
             //hasTarget = true;
 
@@ -78,8 +83,8 @@ public class Enemy : LivingEntity
         }
         startingHealth = enemyHealth;
 
-        skinMaterial = GetComponent<Renderer>().material;
-        skinMaterial.color = skinColor;
+        skinMaterial = GetComponent<Renderer>().material; // material 할당
+        skinMaterial.color = skinColor; 
         originalColor = skinMaterial.color;
     }
 
@@ -111,10 +116,12 @@ public class Enemy : LivingEntity
             if(Time.time > nextAttackTime)
             {
                 // (target.position - transform.position).sqrMagnitude로 목표의 위치와 자신의 위치의 차에 제곱을 한 수를 가져온다, 목표까지 거리의 제곱
+                // 여기서 적의 중심과 플레이어의 중심으로 부터 잰 거리의 제곱을 가져왔는데, 
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
 
                 // 그리고 목표까지 거리의 제곱인 sqrDstToTarget 이 attackDistanceThreshold 제곱 보다 작은지 비교
                 //if(sqrDstToTarget < Mathf.Pow(attackDistanceThreshold,2))
+                // 우리는 공격 한계거리를 두 콜라이더의 표면으로 부터 젤것인데 그것을 콜라이더의 중심에서 유추하려면, 거기에 두 콜라이더의 반지름을 더해야 한다
                 if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold+myCollisionRadius+targetCollisionRadius,2))
                 {
                     nextAttackTime = Time.time + timeBetweenAttacks; // 다음 공격 가능시간 현재 시간에 공격 간격을 더한 값으로 지정
@@ -127,18 +134,19 @@ public class Enemy : LivingEntity
     // 공격을 위한 코루틴 작성
     IEnumerator Attack()
     {
+        // 공격하는 동안은 currentState = State.Attacking 으로 지정하면 UpdatePath가 실행되지 않는다.
         currentState = State.Attacking;
         pathfinder.enabled = false;
 
-        Vector3 originalPosition = transform.position;
+        Vector3 originalPosition = transform.position; // 현재 위치
         Vector3 dirTotarget = (target.position - transform.position).normalized;
-        Vector3 attackPosition = target.position - dirTotarget * (myCollisionRadius);
+        Vector3 attackPosition = target.position - dirTotarget * (myCollisionRadius); //공격 목표지점
         //Vector3 attackPosition = target.position;
+        float attackSpeed = 3; // 공격 속도
+        float percent = 0; // 찌르기 애니메이션이 얼마나 멀리 갈것인가
 
-        float attackSpeed = 3; 
-        float percent = 0;
-
-        skinMaterial.color = Color.red;
+        skinMaterial.color = Color.red; // 공격할때 red로 지정
+        // 적이 플레이어를 계속 경로계산으로 추적해 쫓아가는 것을 원치 않는다, 왜냐하면 우리가 만든 애니메이션을 방해하기때문이다. 하여 false로 해준다.
         bool hasAppliedDamage = false;
 
         while(percent <= 1)
@@ -148,16 +156,27 @@ public class Enemy : LivingEntity
                 hasAppliedDamage = true;
                 targetEntity.TakeDamage(damage);
             }
+            // originalPosition에서 시작해서 attackPosition으로 이동하고 다시 originalPosition으로 돌아가기 때문에,
+            // 값이 0에서 1로, 그리고 다시 1에서 0으로 돌아가야만 한다. 하여 대칭함수를 이용한다
+            // y = 4(-x^2+x) 같은 함수
             percent += Time.deltaTime * attackSpeed;
+            // 하여 이것을 interpolation(보간)값 이라 부를 건데, 보간은 알려진 점들의 위치를 참조하여, 집합의 일정 범위의 점들(선)을 새롭게 그리는 방법을 말한다.
+            // 여기서는 원지점->공격지점으로 이동할때 참조할 위 그래프의 대칭 곡선을 만드는 참조점을 의미한다.
             float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            // transform.position 값이 Vector3.Lerp로 originalPosition에서 출발하여(*Lerp메소드는 두 벡터 사이에 비례 값(0에서 1사이)으로 내분점 지점을 반환.
+            // 그래서 보간값이 0일때, 우리는 원지점 originalPosition에 있고, 1일 때는 attackPosition에 있을 것이다, 그리고 다시 0이 됬을 때 원지점으로 돌아간다.
             transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
 
+            // 코루틴이기 때문에, yield return null 을 사용한다. 이는 while 루프의 각 처리 사이에서 프레임을 스킵한다
+            // * yield return null 지점에서 작업이 멈추고, Update 메소드의 작업이 완전 수행된 이후, 
+            // 다음 프레임으로 넘어갔을 때 yield키워드 아래에 있는 코드나 다음번 루프가 실행된다는 말이다
             yield return null;
         }
 
-        skinMaterial.color = originalColor;
+        skinMaterial.color = originalColor; // 공격이 끝나면 원래 색으로 돌아온다.
+        // 공격이 끝나면 currentState = State.Chasing 으로 추격상태로 다시 돌아간다,
         currentState = State.Chasing;
-        pathfinder.enabled = true;
+        pathfinder.enabled = true; // 공격이 끝났을 때 true라고 해준다.
     }
 
     IEnumerator UpdatePath()
@@ -165,9 +184,15 @@ public class Enemy : LivingEntity
         float refreshRate = 0.25f; // Path를 업데이트할 때 사용할 갱신간격을 선언
         while (hasTarget)
         {
-            if(currentState == State.Chasing)
+            // if(currentState == State.Chasing) 인 경우에만 UpdatePath로 경로를 갱신한다.
+            if (currentState == State.Chasing)
             {
+                // 목표로의 방향 벡터를 가져온다. 대상의 위치에서 현재 위치를 뺀다음 정규화 하면 된다.
                 Vector3 dirTotarget = (target.position - transform.position).normalized;
+                // 경로를 갱신할때 targetPosition에 실제 목표의 위치를 할당하지 말고, 목표 위치에서 일종의 적과 목표 사이의 방향(방향벡터)에
+                // 적과 목표의 충돌 범위의 반지름을 곱하여 뺀 값을 할당한다
+                // target.position에 목표로의 방향벡터에 적과 자신의 충돌 반지름을 곱한 값인 dirTotarget * (myCollisionRadius + targetCollisionRadius)를 뺀다
+                // 찌르기 모션을 주기 위해서 사이 공간을 넣어주기위해 충돌 범위 밖에다 공격 한계 거리인 attackDistanceThreshold의 절반 만큼 더한 거리에서 멈추게 한다.
                 Vector3 targetPosition = target.position - dirTotarget * (myCollisionRadius + targetCollisionRadius + attackDistanceThreshold/2);
                 // targetPosition을 선언해서 새로운 벡터3를 할당하는데 이것이 바닥에 있도록 한다, 하여 x값에는 target.position.x가 들어가지만 y 값에는 0이 들어가고
                 // z값에는 target.position.z가 들어간다
