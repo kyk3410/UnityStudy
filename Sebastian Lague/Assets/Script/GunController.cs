@@ -68,4 +68,12 @@ public class GunController : MonoBehaviour
         }
 
     }
+
+    public void Reload()
+    {
+        if (equippedGun != null)
+        {
+            equippedGun.Reload();
+        }
+    }
 }

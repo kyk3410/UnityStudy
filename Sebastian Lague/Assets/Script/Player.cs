@@ -58,6 +58,10 @@ public class Player : LivingEntity // <- LivingEntity에는 IDamageable과 MonoB
         {
             gunController.OnTriggerRelase();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            gunController.Reload();
+        }
 
     }
 }

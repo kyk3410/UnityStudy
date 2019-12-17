@@ -19,7 +19,7 @@ public class Enemy : LivingEntity
 
     Color originalColor;
 
-    float attackDistanceThreshold = 0.5f;
+    float attackDistanceThreshold = 0.5f; //(공격 거리 임계값, 공격할 수 있는 한계 거리)
     float timeBetweenAttacks = 1f;
     float damage = 1;
 
@@ -107,19 +107,24 @@ public class Enemy : LivingEntity
         // 1은 IEnumerator UpdatePath()로 이동해준다.
         if (hasTarget)
         {
+            // 참으로 공격 가능 시간 이후일 경우, 이제 거리를 체크할 수 있다
             if(Time.time > nextAttackTime)
             {
+                // (target.position - transform.position).sqrMagnitude로 목표의 위치와 자신의 위치의 차에 제곱을 한 수를 가져온다, 목표까지 거리의 제곱
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
 
+                // 그리고 목표까지 거리의 제곱인 sqrDstToTarget 이 attackDistanceThreshold 제곱 보다 작은지 비교
+                //if(sqrDstToTarget < Mathf.Pow(attackDistanceThreshold,2))
                 if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold+myCollisionRadius+targetCollisionRadius,2))
                 {
-                    nextAttackTime = Time.time + timeBetweenAttacks;
-                    StartCoroutine(Attack());
+                    nextAttackTime = Time.time + timeBetweenAttacks; // 다음 공격 가능시간 현재 시간에 공격 간격을 더한 값으로 지정
+                    StartCoroutine(Attack()); // 코루틴 호출
                 }
             }
         }
     }
 
+    // 공격을 위한 코루틴 작성
     IEnumerator Attack()
     {
         currentState = State.Attacking;

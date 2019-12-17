@@ -700,7 +700,13 @@ MonoBehaviour:
     type: 3}
   msBetweenShots: 100
   muzzleVelocity: 35
-  burstCount: 0
+  burstCount: 3
+  projectilesPerMag: 10
+  reloadTime: 0.3
+  kickMinMax: {x: 0.05, y: 0.2}
+  recoilAngleMinMax: {x: 3, y: 5}
+  recoilMoveSettleSpeedTime: 0.1
+  recoilRotationSettleSpeedTime: 0.1
   shell: {fileID: 6085249426604049789, guid: c3e08cbd1464a964f9062262c59b56cb, type: 3}
   shellEjection: {fileID: 481798385}
 --- !u!114 &72478529
