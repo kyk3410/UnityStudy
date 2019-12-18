@@ -25,12 +25,15 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         // health -= damage;를 해주고 health가 0보다 작거나 같으면 Die메소드를 호출해준다
         // 또 아직 죽지 않았을때라는 조건을 붙여준다 && !dead
-        // Do some stuff here with hit var
+        // Do some stuff here with hit var 나중에 hit변수와 함께 어떤 처리들을 여기서 할것이다. 예를 들면 나중에 RaycastHit변수를 사용해서 발사체가 적을 맞춘 지점을 감지할 수 있고,
+        // 그리고 파티클 오브젝트를 그 지점에서 생성할 수 있다.
         TakeDamage(damage);
     }
 
+    // IDamageable에서 TakeDamage를 만들어주었기 때문에 LivingEntity에도 만들어주어야 된다
     public virtual void TakeDamage(float damage)
     {
+        // TakeHit 코드를 가져오고 TakeHit메소드는 단순이 TakeDamage를 damage를 넣어 재사용하면 된다.
         health -= damage;
         if (health <= 0 && !dead)
         {

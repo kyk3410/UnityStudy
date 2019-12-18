@@ -7,6 +7,7 @@ public interface IDamageable
     // 얼마나 데미지를 입을지 표현할 float damage를 입력으로 받고, 또한 RaycastHit을 입력받는다, 이것이 충돌 지점이 어디인지 등의 기타 정보를 제공해 줄것이다.
     // 실제로 구현 부분은 여기서 만들 필요가 없기때문에 ; 해준다.
     void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection);
+    // TakeDamage를 만들어준다 TakeHit을 간단하게 만든 버전이다, damage는 요구하지만 RaycastHit입력은 요구하지 않을 것이다.
     void TakeDamage (float damage);
 }
 

@@ -19,7 +19,7 @@ public class Enemy : LivingEntity
     NavMeshAgent pathfinder; // 길찾기를 관리 할것이다
     Transform target; // targer은 플레이어이다
     Material skinMaterial; // 적의 색깔을 가져온다.
-    LivingEntity targetEntity;
+    LivingEntity targetEntity; // target이 죽었는지 감지하고 추격을 멈추도록 하기위해 
 
     Color originalColor; // 공격이 끝난후에 원래 색으로 돌아와야되니
 
@@ -43,7 +43,7 @@ public class Enemy : LivingEntity
             hasTarget = true;
 
             target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
-            targetEntity = target.GetComponent<LivingEntity>();
+            targetEntity = target.GetComponent<LivingEntity>(); // 컴포넌트 가져오기
 
             myCollisionRadius = GetComponent<CapsuleCollider>().radius; // 자신의 캡슐 콜라이더 컴포넌트를 가져와 radius값을 할당
             targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius; // targetCollisionRadius도 같은 것을 목표에서 가져오니, 위와 같이 할당한다.
@@ -62,10 +62,11 @@ public class Enemy : LivingEntity
         {
             // Start 메소드에서 currentState = State.Chasing 으로 기본 상태를 지정해준다. 기본 상태는 추격이다
             currentState = State.Chasing;
-            //hasTarget = true;
+            //hasTarget = true; 목표가 존재함
 
             /*target = GameObject.FindGameObjectWithTag("Player").transform; // Player라는 태그를 가진 오브젝트를 target에 할당한다.
             targetEntity = target.GetComponent<LivingEntity>();*/
+            // LivingEntity의 OnDeath 이벤트가 구독하게 한다 
             targetEntity.OnDeath += OnTargetDeath;
 
             /*myCollisionRadius = GetComponent<CapsuleCollider>().radius;
@@ -99,7 +100,9 @@ public class Enemy : LivingEntity
 
     void OnTargetDeath()
     {
+        // 목표가 죽는 순간에 false를 해 쫒을 목표가 없음을 지정한다
         hasTarget = false;
+        // 적이 할일이 없어졌으므로, currentState = State.Idle로 지정한다.
         currentState = State.Idle;
     }
 
@@ -110,6 +113,7 @@ public class Enemy : LivingEntity
         // 하여 매 프레임마다 업데이트를 하지 말고, 타이머로 고정된 간격으로 하게 하자.
         // -> IEnumerator UpdatePath()를 만들어준다 
         // 1은 IEnumerator UpdatePath()로 이동해준다.
+        // hasTarget이 true일때만 공격하게 한다.
         if (hasTarget)
         {
             // 참으로 공격 가능 시간 이후일 경우, 이제 거리를 체크할 수 있다
@@ -132,6 +136,7 @@ public class Enemy : LivingEntity
     }
 
     // 공격을 위한 코루틴 작성
+    // 목표가 죽었을때를 처리한후에 플레이어가 적의 공격 등으로 대미지를 입게하는 것을 구현한다.
     IEnumerator Attack()
     {
         // 공격하는 동안은 currentState = State.Attacking 으로 지정하면 UpdatePath가 실행되지 않는다.
@@ -147,13 +152,17 @@ public class Enemy : LivingEntity
 
         skinMaterial.color = Color.red; // 공격할때 red로 지정
         // 적이 플레이어를 계속 경로계산으로 추적해 쫓아가는 것을 원치 않는다, 왜냐하면 우리가 만든 애니메이션을 방해하기때문이다. 하여 false로 해준다.
-        bool hasAppliedDamage = false;
+        bool hasAppliedDamage = false; // 대미지를 적용하는 도중인가를 선언하고 계속 추적, false로 초기화
 
         while(percent <= 1)
         {
+            // 만약 percent가 절반보다 크거나 같으면서 동시에 hasAppliedDamage가 false로 아직 대미지를 입히지 않았다면
             if (percent >= 0.5f && !hasAppliedDamage)
             {
+                // true로 대미지를 가하는 중임을 표현
                 hasAppliedDamage = true;
+                // targetEntity의 TakeHit을 호출하여 플레이어가 적으로 부터 타격을 입게 하고 싶다, 문제는 TakeHit메소드는 우리가 지정해줄 수 있는 damage값도 요구하지만
+                // 동시에 RaycastHit 값도 요구하는데, 아직 레이캐스팅을 하지 않기 때문에 값을 줄 수 없다. 하여 IDamageable로 간다.
                 targetEntity.TakeDamage(damage);
             }
             // originalPosition에서 시작해서 attackPosition으로 이동하고 다시 originalPosition으로 돌아가기 때문에,
@@ -162,9 +171,10 @@ public class Enemy : LivingEntity
             percent += Time.deltaTime * attackSpeed;
             // 하여 이것을 interpolation(보간)값 이라 부를 건데, 보간은 알려진 점들의 위치를 참조하여, 집합의 일정 범위의 점들(선)을 새롭게 그리는 방법을 말한다.
             // 여기서는 원지점->공격지점으로 이동할때 참조할 위 그래프의 대칭 곡선을 만드는 참조점을 의미한다.
-            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4; // <- 볼록 대칭함수를 보면percent가 절반일때라는걸 알 수 있다.
             // transform.position 값이 Vector3.Lerp로 originalPosition에서 출발하여(*Lerp메소드는 두 벡터 사이에 비례 값(0에서 1사이)으로 내분점 지점을 반환.
             // 그래서 보간값이 0일때, 우리는 원지점 originalPosition에 있고, 1일 때는 attackPosition에 있을 것이다, 그리고 다시 0이 됬을 때 원지점으로 돌아간다.
+            // 적이 attackPosition에 도달했을 때, interpolation값이 1일때 플레이어가 대미지를 입게 하려한다.
             transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
 
             // 코루틴이기 때문에, yield return null 을 사용한다. 이는 while 루프의 각 처리 사이에서 프레임을 스킵한다
@@ -182,6 +192,7 @@ public class Enemy : LivingEntity
     IEnumerator UpdatePath()
     {
         float refreshRate = 0.25f; // Path를 업데이트할 때 사용할 갱신간격을 선언
+        // target != null 보다 hasTarget으로 하여 목표가 존재하는 동안이라는 표현으로 바꾼다.
         while (hasTarget)
         {
             // if(currentState == State.Chasing) 인 경우에만 UpdatePath로 경로를 갱신한다.
