@@ -17,10 +17,26 @@ public class Player : LivingEntity // <- LivingEntity에는 IDamageable과 MonoB
     protected override void Start()
     {
         base.Start();
+        /*controller = GetComponent<PlayerController>();
+        // WeaponController에 대한 레퍼런스를 가져온다
+        gunController = GetComponent<GunController>();
+        viewCamera = Camera.main;
+        FindObjectOfType<Spawner>().OnNewWave += OnNewWave;*/
+    }
+
+    void Awake()
+    {
         controller = GetComponent<PlayerController>();
         // WeaponController에 대한 레퍼런스를 가져온다
         gunController = GetComponent<GunController>();
         viewCamera = Camera.main;
+        FindObjectOfType<Spawner>().OnNewWave += OnNewWave;
+    }
+
+    void OnNewWave(int waveNumber)
+    {
+        health = startingHealth;
+        gunController.EquipGun(waveNumber - 1);
     }
     void Update()
     {

@@ -5,17 +5,18 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public Transform weaponHold;
-    public Gun startingGun;
+    public Gun[] allGuns;
+    //public Gun startingGun;
     Gun equippedGun;
 
     private void Start()
     {
         // 만약 처음 시작 무기를 할당해 줬었다면, 즉 startingGun이 Null이 아니라면
-        if(startingGun != null)
+        /*if(startingGun != null)
         {
             // 하면 EquipGun을 호출할 수 있다.
             EquipGun(startingGun);  
-        }
+        }*/
     }
 
     public void EquipGun(Gun gunToEquip)
@@ -33,6 +34,10 @@ public class GunController : MonoBehaviour
         // 변수가 Gun타입이라 오브젝트를 Gun으로 형변환 해주어야 된다.
         // 총 오브젝트가 플레이어를 따라 움직이도록 weaponHold의 자식으로 넣어야 한다.
         equippedGun.transform.parent = weaponHold;
+    }
+    public void EquipGun(int weapponIndex)
+    {
+        EquipGun(allGuns[weapponIndex]);
     }
 
     public void OnTriggerHold()
