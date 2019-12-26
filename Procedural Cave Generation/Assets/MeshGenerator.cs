@@ -10,6 +10,9 @@ public class MeshGenerator : MonoBehaviour
     public void GenerateMesh(int[,] map, float squareSize)
     {
         squareGrid = new SquareGrid(map, squareSize);
+
+        vertices = new List<Vector3>();
+        triangles = new List<int>();
         for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
         {
             for (int y = 0; y < squareGrid.squares.GetLength(1); y++) 
@@ -17,6 +20,14 @@ public class MeshGenerator : MonoBehaviour
                 TriangulateSquare(squareGrid.squares[x, y]);    
             }
         }
+
+        Mesh mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.RecalculateNormals();
+
     }
     void TriangulateSquare(Square square)
     {
@@ -61,7 +72,7 @@ public class MeshGenerator : MonoBehaviour
 
             // 3 points:
             case 7:
-                MeshFromPoints(square.centreTop, square.topRight, square.bottomLeft, square.bottomRight,square.centreLeft);
+                MeshFromPoints(square.centreTop, square.topRight, square.bottomRight, square.bottomLeft,square.centreLeft);
                 break;
             case 11:
                 MeshFromPoints(square.topLeft, square.centreTop, square.centreRight, square.bottomRight,square.bottomLeft);
@@ -84,6 +95,14 @@ public class MeshGenerator : MonoBehaviour
     {
         AssignVertices(points);
 
+        if (points.Length >= 3)
+            CreateTriangle(points[0], points[1], points[2]);
+        if (points.Length >= 4)
+            CreateTriangle(points[0], points[2], points[3]);
+        if (points.Length >= 5)
+            CreateTriangle(points[0], points[3], points[4]);
+        if (points.Length >= 6)
+            CreateTriangle(points[0], points[4], points[5]);
     }
 
     void AssignVertices(Node[] points)
@@ -93,7 +112,7 @@ public class MeshGenerator : MonoBehaviour
             if(points[i].vertexIndex == -1)
             {
                 points[i].vertexIndex = vertices.Count;
-                vertices.Add(points[i]);
+                vertices.Add(points[i].position);
             }
         }
     }
@@ -107,7 +126,7 @@ public class MeshGenerator : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if(squareGrid != null)
+        /*if(squareGrid != null)
         {
             for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
             {
@@ -132,7 +151,7 @@ public class MeshGenerator : MonoBehaviour
                     Gizmos.DrawCube(squareGrid.squares[x, y].centreLeft.position, Vector3.one * .15f);
                 }
             }
-        }
+        }*/
     }
     
     public class SquareGrid
