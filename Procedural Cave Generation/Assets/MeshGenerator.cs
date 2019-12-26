@@ -5,11 +5,106 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour
 {
     public SquareGrid squareGrid;
+    List<Vector3> vertices;
+    List<int> triangles;
     public void GenerateMesh(int[,] map, float squareSize)
     {
         squareGrid = new SquareGrid(map, squareSize);
+        for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
+        {
+            for (int y = 0; y < squareGrid.squares.GetLength(1); y++) 
+            {
+                TriangulateSquare(squareGrid.squares[x, y]);    
+            }
+        }
     }
-    
+    void TriangulateSquare(Square square)
+    {
+        switch (square.configuration)
+        {
+            case 0: 
+                break;
+
+            // 1 points:
+            case 1:
+                MeshFromPoints(square.centreBottom, square.bottomLeft, square.centreLeft);
+                break;
+            case 2:
+                MeshFromPoints(square.centreRight, square.bottomRight, square.centreBottom);
+                break;
+            case 4:
+                MeshFromPoints(square.centreTop, square.topRight, square.centreRight);
+                break;
+            case 8:
+                MeshFromPoints(square.centreLeft, square.centreTop, square.centreLeft);
+                break;
+
+            // 2 points:
+            case 3:
+                MeshFromPoints(square.centreRight, square.bottomRight, square.bottomLeft,square.centreLeft);
+                break;
+            case 6:
+                MeshFromPoints(square.centreTop, square.topRight, square.bottomRight,square.centreBottom);
+                break;
+            case 9:
+                MeshFromPoints(square.topLeft, square.centreTop, square.centreBottom, square.bottomLeft);
+                break;
+            case 12:
+                MeshFromPoints(square.topLeft, square.topRight, square.centreRight, square.centreLeft);
+                break;
+            case 5:
+                MeshFromPoints(square.centreTop, square.topRight, square.centreRight, square.centreBottom,square.bottomLeft, square.centreLeft);
+                break;
+            case 10:
+                MeshFromPoints(square.topLeft, square.centreTop, square.centreRight, square.bottomRight, square.centreBottom, square.centreLeft);
+                break;
+
+            // 3 points:
+            case 7:
+                MeshFromPoints(square.centreTop, square.topRight, square.bottomLeft, square.bottomRight,square.centreLeft);
+                break;
+            case 11:
+                MeshFromPoints(square.topLeft, square.centreTop, square.centreRight, square.bottomRight,square.bottomLeft);
+                break;
+            case 13:
+                MeshFromPoints(square.topLeft, square.topRight, square.centreRight, square.centreBottom,square.bottomLeft);
+                break;
+            case 14:
+                MeshFromPoints(square.topLeft, square.topRight, square.bottomRight, square.centreBottom,square.centreLeft);
+                break;
+
+            // 4 points:
+            case 15:
+                MeshFromPoints(square.topLeft, square.topRight, square.bottomRight, square.bottomLeft);
+                break;
+        }
+    }
+
+    void MeshFromPoints(params Node[] points)
+    {
+        AssignVertices(points);
+
+    }
+
+    void AssignVertices(Node[] points)
+    {
+        for(int i = 0; i<points.Length; i++)
+        {
+            if(points[i].vertexIndex == -1)
+            {
+                points[i].vertexIndex = vertices.Count;
+                vertices.Add(points[i]);
+            }
+        }
+    }
+
+    void CreateTriangle(Node a, Node b, Node c)
+    {
+        triangles.Add(a.vertexIndex);
+        triangles.Add(b.vertexIndex);
+        triangles.Add(c.vertexIndex);
+    }
+
     void OnDrawGizmos()
     {
         if(squareGrid != null)
@@ -76,6 +171,7 @@ public class MeshGenerator : MonoBehaviour
     {
         public ControlNode topLeft, topRight, bottomRight, bottomLeft;
         public Node centreTop, centreRight, centreBottom, centreLeft;
+        public int configuration;
 
         public Square(ControlNode _topLeft, ControlNode _topRight, ControlNode _bottomRight, ControlNode _bottomLeft)
         {
@@ -88,6 +184,15 @@ public class MeshGenerator : MonoBehaviour
             centreRight = bottomRight.above;
             centreBottom = bottomLeft.right;
             centreLeft = bottomLeft.above;
+
+            if (topLeft.active)
+                configuration += 8;
+            if (topRight.active)
+                configuration += 4;
+            if (bottomRight.active)
+                configuration += 2;
+            if (bottomLeft.active)
+                configuration += 1;
         }
     }
 
