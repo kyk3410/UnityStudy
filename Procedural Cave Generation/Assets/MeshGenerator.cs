@@ -268,9 +268,9 @@ public class MeshGenerator : MonoBehaviour
         return sharedTriangleCount == 1;
     }
 
-   /* void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        if(squareGrid != null)
+        /*if(squareGrid != null)
         {
             for (int x = 0; x < squareGrid.squares.GetLength(0); x++)
             {
@@ -295,8 +295,8 @@ public class MeshGenerator : MonoBehaviour
                     Gizmos.DrawCube(squareGrid.squares[x, y].centreLeft.position, Vector3.one * .15f);
                 }
             }
-        }
-    }*/
+        }*/
+    }
     struct Triangle
     {
         public int vertexIndexA;
