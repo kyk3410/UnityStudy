@@ -15,6 +15,7 @@ public class MeshGenerator : MonoBehaviour
     HashSet<int> checkedVertices = new HashSet<int>();
     public void GenerateMesh(int[,] map, float squareSize)
     {
+        triangleDictionary.Clear();
         outlines.Clear();
         checkedVertices.Clear();
 
