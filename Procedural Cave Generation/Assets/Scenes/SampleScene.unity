@@ -408,7 +408,7 @@ MonoBehaviour:
   height: 72
   seed: Sebastian
   useRandomSeed: 1
-  randomFillPercent: 54
+  randomFillPercent: 49
 --- !u!4 &1408421249
 Transform:
   m_ObjectHideFlags: 0
