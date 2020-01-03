@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\MapGenerator.cs" />
     <Compile Include="Assets\MeshGenerator.cs" />
+    <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\Player2D.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Procedural Cave Generation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
