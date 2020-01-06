@@ -15,7 +15,7 @@ public class Controller2D : RaycastController
         base.Start();   
     }
 
-    public void Move(Vector3 velocity)
+    public void Move(Vector3 velocity, bool standingOnPlatform = false)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
@@ -35,6 +35,11 @@ public class Controller2D : RaycastController
         }
 
         transform.Translate(velocity);
+
+        if (standingOnPlatform)
+        {
+            collisions.below = true;
+        }
     }
 
     void HorizontalCollisions(ref Vector3 velocity)
@@ -52,6 +57,10 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
+                if(hit.distance == 0)
+                {
+                    continue;
+                }
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                 if(i== 0 && slopeAngle <= maxClimbAngle )
                 {
