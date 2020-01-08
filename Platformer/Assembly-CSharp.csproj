@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Controller2D.cs" />
     <Compile Include="Assets\Scripts\PlatformeController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\RaycastController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
