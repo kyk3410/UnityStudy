@@ -15,8 +15,10 @@ public class FieldOfView : MonoBehaviour {
     public List<Transform> visibleTargets = new List<Transform>();
 
     public float meshResolution;
-    public int edgeResolveIteration;
+    public int edgeResolveIterations;
     public float edgeDstThreshold;
+
+    public float maskCutawayDst = .1f;
 
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
@@ -51,7 +53,7 @@ public class FieldOfView : MonoBehaviour {
 
         for(int i=0; i< targetsInViewRadius.Length; i++)
         {
-            Transform target = targetsInViewRadius[i].transform;
+            Transform target = targetsInViewRadius [i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if(Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
@@ -104,7 +106,7 @@ public class FieldOfView : MonoBehaviour {
         vertices[0] = Vector3.zero;
         for(int i=0; i<vertexCount-1; i++)
         {
-            vertices[i + 1] =transform.InverseTransformPoint(viewPoints[i]);
+            vertices[i + 1] =transform.InverseTransformPoint(viewPoints[i] + Vector3.forward * maskCutawayDst);
 
             if(i < vertexCount - 2)
             {
@@ -127,7 +129,7 @@ public class FieldOfView : MonoBehaviour {
         Vector3 minPoint = Vector3.zero;
         Vector3 maxPoint = Vector3.zero;
 
-        for(int i =0; i< edgeResolveIteration; i++)
+        for(int i =0; i< edgeResolveIterations; i++)
         {
             float angle = (minAngle + maxAngle) / 2;
             ViewCastInfo newViewCast = ViewCast(angle);
@@ -141,7 +143,7 @@ public class FieldOfView : MonoBehaviour {
             else
             {
                 maxAngle = angle;
-                maxPoint = maxViewCast.point;
+                maxPoint = newViewCast.point;
             }
         }
         return new EdgeInfo(minPoint, maxPoint);
@@ -157,7 +159,7 @@ public class FieldOfView : MonoBehaviour {
             return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
         else
-            return new ViewCastInfo(false, transform.position + dir * viewAngle, viewRadius, globalAngle);
+            return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
         {
 
         }

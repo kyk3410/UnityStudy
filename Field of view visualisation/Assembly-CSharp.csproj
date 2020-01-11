@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Compile Include="Assets\Scripts\FieldOfView.cs" />
+    <None Include="Assets\Shaders\Stencil Object.shader" />
+    <None Include="Assets\Shaders\Stencil Mask.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Field of view visualisation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
