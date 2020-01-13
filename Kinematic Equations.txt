@@ -1,0 +1,57 @@
+1. s = u + v/2 *t
+2. v = u + at
+3. s = ut + at^2/2
+4. s = vt - at^2/2
+5. v^2 = u^2 +2as
+
+s (displacement) 변화량
+u (initial velocity) 초속
+v (final velocity) 
+a (acceleration) 가속
+t (time)
+
+
+acceleration(due to gravity) = -20m/s^2
+initial velocity = ?
+final velocity = 0m/s 
+
+speed = distance/time
+velocity = displacement/time
+
+average velocity = displacement/time
+initial velocity + final velocity/2 = displacement/time
+
+u+v/2 = s/t
+s = u+v/2*t
+
+가속도는 시간에 따른 속도 변하량의 척도이다.
+우리는 일정하다고 가정하기 때문에 시간이 지남에 따라.
+1.
+acceleration = change in velocity/time
+acceleration = final velocity-initial velocity/time
+가속 = (최종 속도 - 초기 속도)로 다시 쓸수 있다.
+a = v-u/t 
+변수 이름을 대치하면 두 번째 운동 방정식이 있지만 일반적으로 양쪽에 시간을 곱한 다음
+초기 속도를 추가하여 재정렬됩니다.
+at = v - u
+v = u +at
+최종 속도 = 초기 속도 + 가속 * 시간
+2.
+s = u+v/2 * t and v = u + at
+s = u+(u+at)/2 * t
+s = 2u +at/2 * t
+s = 2ut + at^2/2
+s = ut + at^2/2
+
+3.
+s = u+v/2 * t and v = u + at
+s = (v-at)+v/2 * t
+s = 2vt - at^2/2
+s = 2vt - at^2/2
+s = vt - at^2/2
+4.
+s = u+v/2*t and t = v-u/a
+s = (u+v/2)(v-u/a)
+s = v^2-u^2/2a
+2as = v^2 - u^2
+v^2 = u^2 + 2as
