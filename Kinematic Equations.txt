@@ -55,3 +55,60 @@ s = (u+v/2)(v-u/a)
 s = v^2-u^2/2a
 2as = v^2 - u^2
 v^2 = u^2 + 2as
+
+
+2장
+SB = SA + h
+uBt + aBt^/2 = uAt + aAt^2/2 + h
+2uBt + aBt^2 = 2uAt + aAt^2 + 2h
+aBt^2 - aAt^2 + 2uBt - 2uAt -2h = 0
+t^2(aB-aA) + t(2uB - 2uA) - 2h = 0            ax^2 + bx + c = 0
+a = aB-aA
+b = 2uB - 2uA
+c = -2h
+
+
+3장
+
+포물선을 그리며 목표지점에 도달하는 방법
+h = 25m
+Px = 66m Py = 9m
+g = -18m/s^2 (downwards)
+
+Up
+displacement = h
+acceleration = g
+final velocity = 0
+
+Down
+displacement = Py -h
+acceleration = g
+initial velocity = 0
+
+Right
+displacement = Px
+acceleration = 0
+time = tup + tdown
+v^2 = u^2 +2as
+0 = uup^2 + 2gh
+uup^2 = -2gh
+uup = sqrt(-2gh)
+
+up
+s = vt - at^2/2
+h = 0 x tup - g x tup^2/2
+tup^2 = -2h/g
+tup = sqrt(-2h/g)
+
+down
+s = ut + at^2/2
+Py - h = 0 x tdown + gx tdown^2/2
+tdown^2 = 2(Py - h)/g
+tdown = sqrt(2(Py - h)/g)
+
+Right 
+s = ut + at^2/2
+Px - uright x (tup + tdwon) + 0 x (tup+tdown)^2/2
+uright = Px/(tup + tdown)
+uright = Px/sqrt(-2h/g) + sqrt(2(Py-h)/g
+
