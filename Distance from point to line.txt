@@ -1,0 +1,27 @@
+
+p = (-By+Ay,Bx-Ax)
+AB = (Bx-Ax,By-Ay)
+p2 = (By-Ay,-Bx+Ax)
+
+AC = (Cx-Ax,Cy-Ay)
+cos(θ) = CD/||AC||
+CD = ||AC|| x cos(θ)
+
+AC x p = ||AC|| x ||p|| x cos(θ)
+AC x p = ACx x px + ACy x py
+CD x ||p|| = AC x p
+CD x ||p|| = ACx x px + ACy x py
+CD = ACx x Px + ACy + py/||p||
+CD = (Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax)/||p||
+CD = (Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax)/Math.sqrt((-By+Ay)^2+(Bx-Ax)^2)
+
+Distance from point C to the line passing through points A and B:
+|(Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax)|/Math.sqrt((-By+Ay)^2+(Bx-Ax)^2)
+
+'Pseudo distance' from point C to the line passing through points A and B:
+(this is not the actual distance value, but a further point will always have a higher value than a nearer point: useful for sorting)
+|(Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax)|
+
+Determines which side point C lies of the line passing through points A and B:
+(+1 if on one side of the line, -1 if on  the other,and 0 if it lies exactly on the line)
+sgn((Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax))
