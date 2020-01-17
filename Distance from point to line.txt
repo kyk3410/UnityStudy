@@ -25,3 +25,6 @@ Distance from point C to the line passing through points A and B:
 Determines which side point C lies of the line passing through points A and B:
 (+1 if on one side of the line, -1 if on  the other,and 0 if it lies exactly on the line)
 sgn((Cx - Ax)(-By+Ay)+(Cy-Ay)(Bx-Ax))
+
+2)Gamedev Maths:point in triangle
+
