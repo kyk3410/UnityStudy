@@ -29,8 +29,11 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        // 14. Noise 클래스의 2D 노이즈 맵을 검색한다
         float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity,offset);
-
+        // 15. 이 함수의 뒷부분에는 noiseMap을 처리하고 지형으로 바꾸는 모든 방법이 있다. 먼저 MapDisplay 클래스에만 전달 하고 있다.
+        // 화면에 노이즈 맵 그리기를 시작할 수 있다.
+        //
         Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
         for(int y = 0; y<mapChunkSize; y++)
         {
