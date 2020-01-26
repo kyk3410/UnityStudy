@@ -32,13 +32,15 @@ public static class TextureGenerator
         {
             for (int x = 0; x < width; x++)
             {
-                // 25. colourMap을 
+                // 25. y에 지도 너비를 곱하여 색을 얻을 수 있다 행 유형의 색을 제공한다, 열을 얻으려면 X 값을 추가한다
+                // 26. 흑백 사이의 색과 동일하게 하고 싶을 때 시점에서 noiseMap의 값에 따라 Color.Lerp를 사용할수 있다, a는 black b는 white다 그다음 0과 1사이의 백분율을 제공한다. 노이즈 맵과 동일하다 noiseMap[x,y];
                 colourMap[y * width + x] = Color.Lerp(Color.black, Color.white, heightMap[x, y]);
             }
         }
 
         // 21. 모든 픽셀이 텍스처에서 얻을 수 있는 색상을 계속 수정하고 싶다.
         // 22. 이를 수행하는 한 가지 방법은 texture.SetPixel을 사용하여 x와 y마다 색상을 지정하는 것이다.
+        // 27 텍스처에 이 색상을 적용하여  texture.SetPixels라고 말하고 colorMap을 제공하려고 한다. 
         //texture.SetPixels(colourMap);
         //texture.Apply();
 

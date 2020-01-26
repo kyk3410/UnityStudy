@@ -50,7 +50,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
+        // 31. MapDisplay를 호출
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if(drawMode == DrawMode.NoiseMap)
         {
