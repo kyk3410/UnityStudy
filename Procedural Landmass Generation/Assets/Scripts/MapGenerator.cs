@@ -23,6 +23,7 @@ public class MapGenerator : MonoBehaviour
     public float meshHeightMultipler;
     public AnimationCurve meshHeightCurve;
 
+    // 36. 자동으로 업데이트 해주기위해 bool을 선언해준다.
     public bool autoUpdate;
 
     public TerrainType[] regions;
