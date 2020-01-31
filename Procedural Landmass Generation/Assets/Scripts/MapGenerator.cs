@@ -26,7 +26,7 @@ public class MapGenerator : MonoBehaviour
 
     // 36. 자동으로 업데이트 해주기위해 bool을 선언해준다.
     public bool autoUpdate;
-
+    // 배열로 선언해준다.
     public TerrainType[] regions;
 
     public void GenerateMap()
@@ -39,6 +39,7 @@ public class MapGenerator : MonoBehaviour
         // 화면에 노이즈 맵 그리기를 시작할 수 있다.
         //
         Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
+        // 61. 맵을 받는 루프를 만들어준다
         for(int y = 0; y<mapChunkSize; y++)
         {
             for(int x = 0; x < mapChunkSize; x++)
@@ -81,6 +82,7 @@ public class MapGenerator : MonoBehaviour
     }
 }
 
+// 60. 지형의 이름 높이 색깔을 public으로 선언해주고 System.Serializable을 해준다.
 [System.Serializable]
 public struct TerrainType
 {
