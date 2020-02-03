@@ -19,7 +19,8 @@ public class MapGeneratorEditor : Editor
             // 38.autoUpdate가 true가 되면 업데이트가 되도록 한다.
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMap();
+                //mapGen.GenerateMap();
+                mapGen.DrawMaInEditor();
             }
         }
 
@@ -27,7 +28,7 @@ public class MapGeneratorEditor : Editor
         if (GUILayout.Button("Generate"))
         {
             // 34. 버튼을 누르면 mapGen.GenerateMap()을 한다.
-            mapGen.GenerateMap();
+            mapGen.DrawMaInEditor();
         }
     }
 }
