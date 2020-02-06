@@ -6,7 +6,9 @@ public class TerrainFace
 {
     Mesh mesh;
     int resolution;
+    // 1. 어떤 방향으로 나아가는지 알기 위한 백터
     Vector3 localUp;
+    // 2. localUp 방향을 제외한 axisA,axisB 방향
     Vector3 axisA;
     Vector3 axisB;
 
@@ -23,6 +25,8 @@ public class TerrainFace
     public void ConstructMesh()
     {
         Vector3[] vertices = new Vector3[resolution * resolution];
+        // resolution 값이 4라고 생각하면 (4-1)^2는 사각형의 갯수가 되고 * 2 를해주면 삼각형의 갯수가 된다 삼각형의 꼭지점의 갯수가 3이므로 삼각형의 갯수 (4-1)*2 에 *3을 해주면 꼭지점의 갯수가 나온다
+        // 꼭지점의 갯수를 구한이유는 삼각형의 각 점의 위치를 알기 위해서 이다
         int[] triangles = new int[(resolution - 1) * (resolution - 1) * 6];
         int triIndex = 0; 
         for(int y = 0; y < resolution; y++)
