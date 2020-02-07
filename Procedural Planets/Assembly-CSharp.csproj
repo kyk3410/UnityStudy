@@ -63,7 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ColorSettings.cs" />
     <Compile Include="Assets\Planet.cs" />
+    <Compile Include="Assets\ShapeGenerator.cs" />
+    <Compile Include="Assets\ShapeSettings.cs" />
     <Compile Include="Assets\TerrainFace.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Procedural Planets/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
