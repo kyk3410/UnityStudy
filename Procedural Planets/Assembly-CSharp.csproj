@@ -64,12 +64,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ColorSettings.cs" />
+    <Compile Include="Assets\ConditionalHideAttribute.cs" />
+    <Compile Include="Assets\INoiseFilter.cs" />
     <Compile Include="Assets\Noise.cs" />
-    <Compile Include="Assets\NoiseFilter.cs" />
+    <Compile Include="Assets\NoiseFilterFactory.cs" />
     <Compile Include="Assets\NoiseSettings.cs" />
     <Compile Include="Assets\Planet.cs" />
+    <Compile Include="Assets\RidgidNoiseFilter.cs" />
     <Compile Include="Assets\ShapeGenerator.cs" />
     <Compile Include="Assets\ShapeSettings.cs" />
+    <Compile Include="Assets\SimpleNoiseFilter.cs" />
     <Compile Include="Assets\TerrainFace.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Procedural Planets/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
