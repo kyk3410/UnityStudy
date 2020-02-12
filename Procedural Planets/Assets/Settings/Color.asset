@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Color
   m_EditorClassIdentifier: 
   planetColor: {r: 0.8867924, g: 0.6317095, b: 0.4308473, a: 0}
+  planetMaterial: {fileID: 2100000, guid: 66344e04e4bef5b48b7a30fbe526a004, type: 2}
