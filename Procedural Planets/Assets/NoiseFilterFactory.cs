@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoiseFilterFactory : MonoBehaviour
+public static class NoiseFilterFactory
 {
     public static INoiseFilter CreateNoiseFilter(NoiseSettings settings)
     {
