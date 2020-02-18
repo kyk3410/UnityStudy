@@ -17,7 +17,7 @@ public class ColorGenerator : MonoBehaviour
 
     public void UpdateElevation(MinMax elevationMinMax)
     {
-        settings.planetMaterial.SetVector("elevationMinMax", new Vector4(elevationMinMax.Min, elevationMinMax.Max));
+        settings.planetMaterial.SetVector("_elevationMinMax", new Vector4(elevationMinMax.Min, elevationMinMax.Max));
     } 
     public void UpdateColors()
     {

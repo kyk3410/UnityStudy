@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoiseSettings
 {
     public enum FilterType { Simple,Ridgid };
-    public FilterType fileterType;
+    public FilterType filterType;
 
     [ConditionalHide("filterType",0)]
     public SimpleNoiseSettings simpleNoiseSettings;

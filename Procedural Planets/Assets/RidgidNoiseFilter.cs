@@ -27,7 +27,7 @@ public class RidgidNoiseFilter : INoiseFilter
             v *= weight;
             weight = Mathf.Clamp01(v * settings.weightMultiplier);
 
-            noiseValue += v * .5f * amplitude;
+            noiseValue += v * amplitude;
             frequency *= settings.roughness;
             amplitude *= settings.persistence;
         }

@@ -37,7 +37,7 @@ public class ShapeGenerator
                 elevation = firstLayerValue;
             }
         }
-        for(int i = 0; i < noiseFilters.Length; i++)
+        for(int i = 1; i < noiseFilters.Length; i++)
         {
             if (settings.noiseLayers[i].enabled)
             {

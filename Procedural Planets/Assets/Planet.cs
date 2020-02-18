@@ -109,11 +109,11 @@ public class Planet : MonoBehaviour
 
     void GenerateColors()
     {
-        foreach (MeshFilter m in meshFilters)
+        colorGenerator.UpdateColors();
+        /*foreach (MeshFilter m in meshFilters)
         {
             //m.GetComponent<MeshRenderer>().sharedMaterial.color = colorSettings.planetColor;
-            colorGenerator.UpdateColors();
-        }
+        }*/
     }
 
 }
