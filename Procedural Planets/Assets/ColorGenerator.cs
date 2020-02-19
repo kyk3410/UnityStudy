@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorGenerator : MonoBehaviour
+public class ColorGenerator
 {
     ColorSettings settings;
     Texture2D texture;
