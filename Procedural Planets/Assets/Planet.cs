@@ -114,6 +114,13 @@ public class Planet : MonoBehaviour
         {
             //m.GetComponent<MeshRenderer>().sharedMaterial.color = colorSettings.planetColor;
         }*/
+        for (int i = 0; i < 6; i++)
+        {
+            if (meshFilters[i].gameObject.activeSelf)
+            {
+                terrainFaces[i].UpdateUVs(colorGenerator);
+            }
+        }
     }
 
 }
