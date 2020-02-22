@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 194}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 136
+  controlID: 138
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 472}
   m_MaxSize: {x: 18008, y: 14022}
   vertical: 0
-  controlID: 31
+  controlID: 137
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -465,18 +465,18 @@ MonoBehaviour:
       m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Directional Light
-        m_OriginalName: Directional Light
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 15154
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
@@ -777,9 +777,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 8.098006, y: 0.51803684, z: 1.6982179}
+    m_Target: {x: 7.969575, y: -0.8598099, z: 0.8801384}
     speed: 2
-    m_Value: {x: 8.098006, y: 0.51803684, z: 1.6982179}
+    m_Value: {x: 7.969575, y: -0.8598099, z: 0.8801384}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -808,9 +808,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.0010252787, y: 0.72758937, z: 0.00109392, w: 0.68602026}
+    m_Target: {x: 0.028970897, y: 0.74514025, z: -0.03243199, w: 0.66549885}
     speed: 2
-    m_Value: {x: -0.0010252723, y: 0.72758484, z: 0.0010939132, w: 0.686016}
+    m_Value: {x: 0.02797244, y: 0.74518293, z: -0.031314015, w: 0.665537}
   m_Size:
     m_Target: 15.327879
     speed: 2
