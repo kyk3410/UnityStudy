@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public bool onlyDisplayPathGizmos;
+    //public bool onlyDisplayPathGizmos; 아래와 같이 변경
+    public bool displayGridGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -14,7 +15,7 @@ public class Grid : MonoBehaviour
     int gridSizeX, gridSizeY;
 
 
-    void Start()
+    void Awake()
     {
          nodeDiameter = nodeRadius * 2;
          gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -81,13 +82,13 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
 
-    public List<Node> path;
+    //public List<Node> path;
 
     void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-        if (onlyDisplayPathGizmos)
+        /*if (onlyDisplayPathGizmos)
         {
             if(path != null)
             {
@@ -99,16 +100,16 @@ public class Grid : MonoBehaviour
             }
         }
         else
-        {
-            if(grid != null)
+        {*/
+            if(grid != null && displayGridGizmos)
             {
                 //Node playerNode = NodeFromWorldPoint(player.position);
                 foreach(Node n in grid)
                 {
                     Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                    if (path != null)
+                    /*if (path != null)
                         if (path.Contains(n))
-                            Gizmos.color = Color.black;
+                            Gizmos.color = Color.black;*/
                     /*if(playerNode == n)
                     {
                         Gizmos.color = Color.cyan;
@@ -116,6 +117,6 @@ public class Grid : MonoBehaviour
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                 }
             }
-        }
+        /*}*/
     }
 }
