@@ -7,7 +7,7 @@ using System;
 public class Pathfinding : MonoBehaviour
 {
     //public Transform seeker, target;
-    PathRequestManager requestManager;
+    //PathRequestManager requestManager;
     Grid grid;
 
     void Awake()
