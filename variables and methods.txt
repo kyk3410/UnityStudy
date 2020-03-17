@@ -11,20 +11,5 @@ Methods, aka functions:
  // Apply 10 damage
  // to objects within 5 units of the blast 
 
-Class: a way to group related methods and variables together.
-클래스 : 관련 메소드와 변수를 함께 그룹화하는 방법.
 
-class Player{
-	// methods and variables belonging to Player class come here
-}
-
-Inheritance
-상속을 사용하는 경우 예를 들어 새는 날지만 펭귄은 조류이지만 날수가 없는 반면 수영을 할 수가있다 
-이럴 경우에는 상속 대신에 컴포지션이라는 개념을 이용해 이것들을 정리할수 있다
-
-Composition
-이것은 클래스를 여러개로 세분화 해서 클래스 당 하나의 행동만 구현하는 것이다.
-그래서 한 클래스는 수영만 구현하고, 다른 한 클래스는 하늘을 날기만 구현한다.
-그래서 이제 어떤 동물이든지 연관된 컴포넌트들을 조립해서 생성해낼 수 있다.
-또 만약 이러한 컴포넌트들이 일반적으로 자주 쓰이는 것들이라면, 다른 프로젝트에서도 사용할 수 있다.
 
