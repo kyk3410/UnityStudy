@@ -21,7 +21,11 @@ Inheritance and composition are tools which enables us to do this
 
 1. Classes as behavioural components:
 첫번째는 행동 컴포넌트 이다. 이것은 게임 내부의 물체들에 부착되어 그 물체들이 특정한 행동을 하게 한다.
+
 These classes must inherit from Unity's MonoBehaviour class.
 이 클래스들은 반드시 유니티의 MonoBehaviour클래스를 상속해야 한다. 이 클래스 안에는 공통적인 기능들이 포함되어 있다.
-이 기능의 예시 중 하나는 Start 메소드인데, 우리가 만든 클래스 안에서 이 메소드를 사용하면 MonoBehaviour는 게임이 시작할때
-그 메소드가 호출된다는 것을 보장해줍니다.
+이 기능의 예시 중 하나는 Start 메소드인데, 우리가 만든 클래스 안에서 이 메소드를 사용하면 MonoBehaviour는 게임이 시작할때 그 메소드가 호출된다는 것을 보장해줍니다.
+Update라는 메소드를 생성하면, MonoBehaviour는 그 메소드를
+게임이 실행되는 모든 프레임마다 호출되는 것을 보장해주는 역할을 합니다.
+
+
