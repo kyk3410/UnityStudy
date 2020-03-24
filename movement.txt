@@ -1,0 +1,8 @@
+Speed: number of metres traveled per second.
+speed = 12m/s
+Velocity: number of metres traveled in a given direction per second.
+12m/s * (-0.8; 0.6)
+velocity = (-9.6m; 7.2m)
+moveAmount = (-9.6m; 7.2m)*deltaTime/s
+moveAmount = (-9.6m; 7.2m)*0.017s/s
+moveAmount = (-0.16m; 0.12m)
