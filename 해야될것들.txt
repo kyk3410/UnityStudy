@@ -26,3 +26,6 @@
 
 3/23
 vectors 마무리하기
+
+3/26
+space,parenting,rotation,collision detection 마무리
