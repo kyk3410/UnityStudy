@@ -32,3 +32,6 @@ space,parenting,rotation,collision detection 마무리
 
 3/27
 prefabs and instantiation, script communication 마무리
+
+3/29
+마무리 작업하기
