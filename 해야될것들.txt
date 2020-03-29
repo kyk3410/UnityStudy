@@ -35,3 +35,6 @@ prefabs and instantiation, script communication 마무리
 
 3/29
 마무리 작업하기
+
+3/30
+알고리즘 공부하기
