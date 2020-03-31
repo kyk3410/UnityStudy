@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CubeScript.cs" />
+    <Compile Include="Assets\Player.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityStudy/Tutorial/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
