@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 6;
-
+    Vector3 velocity;
+    int coinCount;
     Rigidbody myRigidbody;
     void Start()
     {
@@ -17,11 +18,21 @@ public class Player : MonoBehaviour
     {
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 direction = input.normalized;
-        Vector3 velocity = direction * speed;
+        velocity = direction * speed;
     }
 
     void FixedUpdate()
     {
-            
+        myRigidbody.position += velocity * Time.deltaTime;
+    }
+
+    void OnTriggerEnter(Collider triggerCollider)
+    {
+        print(triggerCollider.gameObject.name);
+        if(triggerCollider.tag == "Coin")
+        {
+            Destroy(triggerCollider.gameObject);
+            coinCount++;
+        }
     }
 }
