@@ -44,3 +44,6 @@ prefabs and instantiation, script communication 마무리
 
 4/5
 falling blocks game
+
+4/6
+정보처리기사 책 구입 및 공부
