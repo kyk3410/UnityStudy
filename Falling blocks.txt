@@ -1,3 +1,12 @@
         (aspect ratio)	       (orthographic size)
 screen width/screen height * screen height(world units)/2
 = screen width(world units)/2
+
+
+a,b,p
+value = a +(b-a)*p
+p = 0
+value = a
+
+p = 1
+value = a + b-a = b
