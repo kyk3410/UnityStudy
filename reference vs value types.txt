@@ -40,3 +40,10 @@ void MovePointOneUnitRight(Point c){
       //c.x += 1;
       c = new Point (c.x + 1, c.y); // 메모리에 변수 c만 참조하는 새 Point객체를 메모리에 만든다
 }
+// b 경우의 x 좌표는 메소드를 호출 한 후에 변경되지 않는다. x가 10으로 남아있다
+
+
+// 'ref'키워드
+
+MovePointOneUnitRight(ref b);
+void MovePointOneUnitRight(ref Point c)
