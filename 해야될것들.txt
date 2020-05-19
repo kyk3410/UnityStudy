@@ -137,3 +137,6 @@ falling blocks game
 
 5/19
 8장
+
+5/20
+1,2,8장
