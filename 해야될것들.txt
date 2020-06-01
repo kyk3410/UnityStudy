@@ -167,3 +167,6 @@ falling blocks game
 
 6/1
 수업 시작
+
+6/2
+C#듣기
