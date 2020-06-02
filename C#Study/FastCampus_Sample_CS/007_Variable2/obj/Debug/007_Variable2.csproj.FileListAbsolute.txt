@@ -1,0 +1,6 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\bin\Debug\007_Variable2.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\bin\Debug\007_Variable2.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\bin\Debug\007_Variable2.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\obj\Debug\007_Variable2.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\obj\Debug\007_Variable2.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\007_Variable2\obj\Debug\007_Variable2.pdb

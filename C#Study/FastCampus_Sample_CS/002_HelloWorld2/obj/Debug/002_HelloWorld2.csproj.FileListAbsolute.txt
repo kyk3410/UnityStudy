@@ -1,0 +1,6 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\bin\Debug\002_HelloWorld2.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\bin\Debug\002_HelloWorld2.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\bin\Debug\002_HelloWorld2.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\obj\Debug\002_HelloWorld2.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\obj\Debug\002_HelloWorld2.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\002_HelloWorld2\obj\Debug\002_HelloWorld2.pdb

@@ -1,0 +1,7 @@
+E:\UnityStudy\Test\FirstProject\bin\Debug\FirstProject.exe.config
+E:\UnityStudy\Test\FirstProject\bin\Debug\FirstProject.exe
+E:\UnityStudy\Test\FirstProject\bin\Debug\FirstProject.pdb
+E:\UnityStudy\Test\FirstProject\obj\Debug\FirstProject.csprojAssemblyReference.cache
+E:\UnityStudy\Test\FirstProject\obj\Debug\FirstProject.csproj.CoreCompileInputs.cache
+E:\UnityStudy\Test\FirstProject\obj\Debug\FirstProject.exe
+E:\UnityStudy\Test\FirstProject\obj\Debug\FirstProject.pdb

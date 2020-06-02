@@ -1,0 +1,7 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\bin\Debug\006_Variable.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\bin\Debug\006_Variable.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\bin\Debug\006_Variable.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\obj\Debug\006_Variable.csprojAssemblyReference.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\obj\Debug\006_Variable.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\obj\Debug\006_Variable.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\006_Variable\obj\Debug\006_Variable.pdb
