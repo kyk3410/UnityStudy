@@ -170,3 +170,6 @@ falling blocks game
 
 6/2
 C#듣기
+
+6/6
+삼성 SW 아카데미 시험
