@@ -1,0 +1,7 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\bin\Debug\CheckPoint02.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\bin\Debug\CheckPoint02.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\bin\Debug\CheckPoint02.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\obj\Debug\CheckPoint02.csprojAssemblyReference.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\obj\Debug\CheckPoint02.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\obj\Debug\CheckPoint02.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint02\obj\Debug\CheckPoint02.pdb

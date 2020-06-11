@@ -1,0 +1,7 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\bin\Debug\055_Check.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\bin\Debug\055_Check.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\bin\Debug\055_Check.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\obj\Debug\055_Check.csprojAssemblyReference.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\obj\Debug\055_Check.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\obj\Debug\055_Check.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\055_Check\obj\Debug\055_Check.pdb
