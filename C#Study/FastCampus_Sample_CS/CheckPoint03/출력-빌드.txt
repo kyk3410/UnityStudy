@@ -1,0 +1,3 @@
+﻿1>------ 빌드 시작: 프로젝트: CheckPoint03, 구성: Debug Any CPU ------
+1>  CheckPoint03 -> E:\UnityStudy\C#Study\FastCampus_Sample_CS\CheckPoint03\bin\Debug\CheckPoint03.exe
+========== 빌드: 성공 1, 실패 0, 최신 0, 생략 0 ==========
