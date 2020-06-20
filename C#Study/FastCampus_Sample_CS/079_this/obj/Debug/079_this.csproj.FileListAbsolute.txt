@@ -1,0 +1,6 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\bin\Debug\079_this.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\bin\Debug\079_this.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\bin\Debug\079_this.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\obj\Debug\079_this.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\obj\Debug\079_this.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\079_this\obj\Debug\079_this.pdb
