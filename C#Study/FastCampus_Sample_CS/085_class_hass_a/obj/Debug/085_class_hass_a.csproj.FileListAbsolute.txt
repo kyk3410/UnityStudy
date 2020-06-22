@@ -1,0 +1,7 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\bin\Debug\085_class_hass_a.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\bin\Debug\085_class_hass_a.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\bin\Debug\085_class_hass_a.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\obj\Debug\085_class_hass_a.csprojAssemblyReference.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\obj\Debug\085_class_hass_a.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\obj\Debug\085_class_hass_a.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\085_class_hass_a\obj\Debug\085_class_hass_a.pdb

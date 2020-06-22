@@ -1,0 +1,7 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\bin\Debug\082_as.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\bin\Debug\082_as.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\bin\Debug\082_as.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\obj\Debug\082_as.csprojAssemblyReference.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\obj\Debug\082_as.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\obj\Debug\082_as.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\082_as\obj\Debug\082_as.pdb

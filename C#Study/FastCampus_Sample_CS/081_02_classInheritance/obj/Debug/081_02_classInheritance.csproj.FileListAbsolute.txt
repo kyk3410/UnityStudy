@@ -1,0 +1,6 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\bin\Debug\081_02_classInheritance.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\bin\Debug\081_02_classInheritance.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\bin\Debug\081_02_classInheritance.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\obj\Debug\081_02_classInheritance.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\obj\Debug\081_02_classInheritance.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\081_02_classInheritance\obj\Debug\081_02_classInheritance.pdb

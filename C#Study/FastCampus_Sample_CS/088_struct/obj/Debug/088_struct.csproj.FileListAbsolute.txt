@@ -1,0 +1,6 @@
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\bin\Debug\088_struct.exe.config
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\bin\Debug\088_struct.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\bin\Debug\088_struct.pdb
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\obj\Debug\088_struct.csproj.CoreCompileInputs.cache
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\obj\Debug\088_struct.exe
+E:\UnityStudy\C#Study\FastCampus_Sample_CS\088_struct\obj\Debug\088_struct.pdb
