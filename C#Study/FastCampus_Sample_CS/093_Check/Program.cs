@@ -8,6 +8,10 @@ namespace _093_Check
 {
     class InputData
     {
+        public int[] ID;
+        public int[] kor;
+        public int[] math;
+        public int[] eng;
         public void Input()
         {
             Console.Write("");
