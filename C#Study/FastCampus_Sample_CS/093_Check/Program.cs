@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,80 +7,94 @@ using System.Threading.Tasks;
 
 namespace _093_Check
 {
-    class InputData
+    class CStudent
     {
-        public int[] ID;
-        public int[] kor;
-        public int[] math;
-        public int[] eng;
-        public void Input()
+        private int id;
+        private int kor;
+        private int math;
+        private int eng;
+
+        public int ID { get { return id; } }
+        public int KOR { get { return kor; } }
+        public int MATH { get { return math; } }
+        public int ENG { get { return eng; } }
+
+        public CStudent()
         {
-            Console.Write("");
+            this.id = 0;
+            this.kor = 0;
+            this.math = 0;
+            this.eng = 0;
         }
+
+        public void InputID()
+        {
+            Console.Write("학생 ID를 입력하세요?");
+            this.id = int.Parse(Console.ReadLine());
+        }
+        public void InputKor()
+        {
+            Console.Write("국어 점수를 입력하세요?");
+            this.kor = int.Parse(Console.ReadLine());
+        }
+        public void InputMath()
+        {
+            Console.Write("수학 점수를 입력하세요?");
+            this.math = int.Parse(Console.ReadLine());
+        }
+        public void InputEng()
+        {
+            Console.Write("영어 점수를 입력하세요?");
+            this.eng = int.Parse(Console.ReadLine());
+        }
+        public void PrintID()
+        {
+            Console.WriteLine("학생 ID: {0}", this.id);
+        }
+        public int GetTotal()
+        {
+            return kor + eng + math;
+        }
+
     }
 
     class Program
     {
-        static void InputID(int[] ID, int index)
+        static void PrintId(CStudent[] arrStudents)
         {
-            Console.Write("학생 ID를 입력하세요? ");
-            ID[index] = int.Parse(Console.ReadLine());
-            //saveData[i, j] = int.Parse(Console.ReadLine());
-        }
-
-        static void InputKor(int[] kor, int index)
-        {
-            Console.Write("국어 점수를 입력하세요? ");
-            kor[index] = int.Parse(Console.ReadLine());
-        }
-        static void InputMath(int[] math, int index)
-        {
-            Console.Write("수학 점수를 입력하세요? ");
-            math[index] = int.Parse(Console.ReadLine());
-        }
-        static void InputEng(int[] eng, int index)
-        {
-            Console.Write("영어 점수를 입력하세요? ");
-            eng[index] = int.Parse(Console.ReadLine());
-        }
-        static void PrintId(int max, int[] ID)
-        {
-            for (int i = 0; i < max; i++)
+            foreach (CStudent data in arrStudents)
             {
-                Console.WriteLine("학생 ID: {0}", ID[i]);
+                data.PrintID();
             }
         }
 
-        static int CheckID(int id, int max, int[] ID)
+        static int CheckID(int id, CStudent[] arrStudents)
         {
-            for (int i = 0; i < max; i++)
+            for (int i = 0; i < arrStudents.Length; i++)
             {
-                if (ID[i] == id)
-                {
-                    return i;
-                }
+                if (id == arrStudents[i].ID)
+                    return 1;
             }
             return -1;
         }
 
+        
+
+
         static void Main(string[] args)
         {
             const int MAX = 3;
-
-            int[] arrID = new int[MAX];
-            int[] arrKor = new int[MAX];
-            int[] arrMath = new int[MAX];
-            int[] arrEng = new int[MAX];
-
             int inputSel = 0;
             int selID = -1;
 
+            CStudent[] arrStudents = new CStudent[MAX];
             for (int i = 0; i < MAX; i++)
             {
-                InputID(arrID, i);
-                InputKor(arrKor, i);
-                InputMath(arrMath, i);
-                InputEng(arrEng, i);
+                arrStudents[i] = new CStudent();
+                arrStudents[i].InputID();
+                arrStudents[i].InputKor();
+                arrStudents[i].InputMath();
+                arrStudents[i].InputEng();
 
                 Console.WriteLine();
             }
@@ -88,22 +103,22 @@ namespace _093_Check
 
             while (true)
             {
-                PrintId(MAX, arrID);
+                PrintId(arrStudents);
                 Console.Write("학생 아이디를 입력하세요? (0)나가기 ");
                 inputSel = int.Parse(Console.ReadLine());
 
                 if (inputSel == 0)
                     break;
 
-                selID = CheckID(inputSel, MAX, arrID);
+                selID = CheckID(inputSel,arrStudents);
 
                 if (selID >= 0)
                 {
-                    Console.WriteLine("국어 점수: {0}", arrKor[selID]);
-                    Console.WriteLine("수학 점수: {0}", arrMath[selID]);
-                    Console.WriteLine("영어 점수: {0}", arrEng[selID]);
+                    Console.WriteLine("국어 점수: {0}", arrStudents[selID].KOR);
+                    Console.WriteLine("수학 점수: {0}", arrStudents[selID].MATH);
+                    Console.WriteLine("영어 점수: {0}", arrStudents[selID].ENG);
 
-                    int total = arrKor[selID] + arrMath[selID] + arrEng[selID];
+                    int total = arrStudents[selID].GetTotal();
 
                     Console.WriteLine("총점: {0}", total);
                     Console.WriteLine("평균: {0}", total / (float)MAX);
